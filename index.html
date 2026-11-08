@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b09">
+  <title>PARADOX KENO</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">P<span>X</span></span><div><b>PARADOX</b><small>KENO</small></div></div>
+      <div class="top-actions"><span class="balance-label">БАЛАНС</span><strong id="balance">1000.00</strong><button class="icon-btn" id="soundBtn" title="Звук">♫</button></div>
+    </header>
+
+    <section class="game-shell">
+      <div class="game-head">
+        <div><span class="eyebrow">UNDERGROUND GAME</span><h1>KEN<span>O</span></h1></div>
+        <div class="fair-chip"><i></i> PROVABLY FAIR <span id="fairHash">...</span></div>
+      </div>
+
+      <div class="game-layout">
+        <aside class="panel controls">
+          <div class="control-title">ПАРАМЕТРЫ РАУНДА</div>
+          <label class="field-label">Ставка</label>
+          <div class="stepper"><button id="betMinus">−</button><input id="bet" type="number" min="0.1" max="1000" step="0.1" value="10.00"><button id="betPlus">+</button></div>
+          <div class="field-row"><label class="field-label">Выбрано чисел</label><b><span id="pickCount">0</span><small> / 10</small></b></div>
+          <div class="pick-slots" id="pickSlots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <button class="secondary-btn" id="autoPick">⤨　АВТОВЫБОР</button>
+          <button class="secondary-btn" id="clear">✕　ОЧИСТИТЬ</button>
+          <div class="divider"></div>
+          <div class="field-row"><label class="field-label">Риск / таблица выплат</label></div>
+          <div class="risk-note">Коэффициенты указаны для выбранного количества чисел.</div>
+          <button class="text-btn" id="resetDemo">Сбросить демо-баланс</button>
+        </aside>
+
+        <section class="panel board-panel">
+          <div class="board-top"><div><span class="field-label">ВЫБЕРИТЕ ЧИСЛА</span><span class="hint">От 1 до 10</span></div><div class="draw-count">РОЗЫГРЫШ: <b>10</b> ЧИСЕЛ</div></div>
+          <div class="number-grid" id="numberGrid" aria-label="Игровое поле из 40 чисел"></div>
+          <div class="board-legend"><span><i class="dot selected-dot"></i> Ваш выбор</span><span><i class="dot drawn-dot"></i> Выпавшие</span><span><i class="dot hit-dot"></i> Совпадение</span></div>
+          <button class="play-btn" id="play">ИГРАТЬ <span>▶</span></button>
+          <p class="notice" id="notice">Выберите числа и нажмите «Играть».</p>
+        </section>
+
+        <aside class="panel payouts">
+          <div class="control-title">ТАБЛИЦА ВЫПЛАТ</div>
+          <p class="risk-note">Множитель × ставка</p>
+          <div class="payout-table" id="payoutTable"></div>
+          <div class="last-result" id="lastResult"><span class="field-label">ПОСЛЕДНИЙ РАУНД</span><b>—</b><small>Здесь появится результат</small></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="history-head"><div><span class="control-title">ИСТОРИЯ РАУНДОВ</span><small>Последние результаты</small></div><button class="text-btn" id="verify">ПРОВЕРИТЬ ЧЕСТНОСТЬ</button></div>
+      <div id="history" class="history-list"><span class="empty">Раундов пока нет</span></div>
+    </section>
+    <footer>PARADOX KENO <span>•</span> DEMO MODE <span>•</span> ИГРА НА ВИРТУАЛЬНЫЕ КРЕДИТЫ</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
