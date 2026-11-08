@@ -1,64 +1,20 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090b09">
-  <title>PARADOX KENO</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <div class="noise"></div>
-  <main class="app">
-    <header class="topbar">
-      <div class="brand"><span class="brand-mark">P<span>X</span></span><div><b>PARADOX</b><small>KENO</small></div></div>
-      <div class="top-actions"><span class="balance-label">БАЛАНС</span><strong id="balance">1000.00</strong><button class="icon-btn" id="soundBtn" title="Звук">♫</button></div>
-    </header>
-
-    <section class="game-shell">
-      <div class="game-head">
-        <div><span class="eyebrow">UNDERGROUND GAME</span><h1>KEN<span>O</span></h1></div>
-        <div class="fair-chip"><i></i> PROVABLY FAIR <span id="fairHash">...</span></div>
-      </div>
-
-      <div class="game-layout">
-        <aside class="panel controls">
-          <div class="control-title">ПАРАМЕТРЫ РАУНДА</div>
-          <label class="field-label">Ставка</label>
-          <div class="stepper"><button id="betMinus">−</button><input id="bet" type="number" min="0.1" max="1000" step="0.1" value="10.00"><button id="betPlus">+</button></div>
-          <div class="field-row"><label class="field-label">Выбрано чисел</label><b><span id="pickCount">0</span><small> / 10</small></b></div>
-          <div class="pick-slots" id="pickSlots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <button class="secondary-btn" id="autoPick">⤨　АВТОВЫБОР</button>
-          <button class="secondary-btn" id="clear">✕　ОЧИСТИТЬ</button>
-          <div class="divider"></div>
-          <div class="field-row"><label class="field-label">Риск / таблица выплат</label></div>
-          <div class="risk-note">Коэффициенты указаны для выбранного количества чисел.</div>
-          <button class="text-btn" id="resetDemo">Сбросить демо-баланс</button>
-        </aside>
-
-        <section class="panel board-panel">
-          <div class="board-top"><div><span class="field-label">ВЫБЕРИТЕ ЧИСЛА</span><span class="hint">От 1 до 10</span></div><div class="draw-count">РОЗЫГРЫШ: <b>10</b> ЧИСЕЛ</div></div>
-          <div class="number-grid" id="numberGrid" aria-label="Игровое поле из 40 чисел"></div>
-          <div class="board-legend"><span><i class="dot selected-dot"></i> Ваш выбор</span><span><i class="dot drawn-dot"></i> Выпавшие</span><span><i class="dot hit-dot"></i> Совпадение</span></div>
-          <button class="play-btn" id="play">ИГРАТЬ <span>▶</span></button>
-          <p class="notice" id="notice">Выберите числа и нажмите «Играть».</p>
-        </section>
-
-        <aside class="panel payouts">
-          <div class="control-title">ТАБЛИЦА ВЫПЛАТ</div>
-          <p class="risk-note">Множитель × ставка</p>
-          <div class="payout-table" id="payoutTable"></div>
-          <div class="last-result" id="lastResult"><span class="field-label">ПОСЛЕДНИЙ РАУНД</span><b>—</b><small>Здесь появится результат</small></div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="panel history-panel">
-      <div class="history-head"><div><span class="control-title">ИСТОРИЯ РАУНДОВ</span><small>Последние результаты</small></div><button class="text-btn" id="verify">ПРОВЕРИТЬ ЧЕСТНОСТЬ</button></div>
-      <div id="history" class="history-list"><span class="empty">Раундов пока нет</span></div>
-    </section>
-    <footer>PARADOX KENO <span>•</span> DEMO MODE <span>•</span> ИГРА НА ВИРТУАЛЬНЫЕ КРЕДИТЫ</footer>
-  </main>
-  <script src="/app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d09"><title>PARADOX KENO</title><style>
+:root{--bg:#080d09;--line:#344333;--g:#9aef22;--muted:#9aa596}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#24351e,transparent 48%),var(--bg);color:#f0f4ec;font-family:Inter,system-ui,Arial}.wrap{width:min(850px,100%);margin:auto;padding:18px 14px 40px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #29362a;padding:12px 4px 18px;margin-bottom:18px}.brand{font-weight:950;font-size:clamp(25px,6vw,38px);letter-spacing:4px}.brand b,.sub{color:var(--g)}.sub{font-size:12px;letter-spacing:7px;font-weight:800}.balance,.panel{background:linear-gradient(145deg,#182218,#0a0f0b);border:1px solid var(--line);border-radius:20px}.balance{padding:12px 15px;font-weight:800}.balance strong{color:var(--g);font-size:20px}.panel{padding:18px;margin:14px 0;box-shadow:0 12px 35px #0005}.eyebrow,.mini{color:var(--muted);font-size:12px}.eyebrow{font-weight:800;letter-spacing:3px}h1{font-size:clamp(30px,8vw,48px);margin:8px 0 18px;letter-spacing:3px}h1 span{color:var(--g)}h2{font-size:18px;letter-spacing:1.5px;margin:0 0 14px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.control{background:#0d140e;border:1px solid #2d3a2d;border-radius:14px;padding:12px}.control label{display:block;color:var(--muted);font-size:13px;margin-bottom:9px;font-weight:700}.step{display:flex;align-items:center;justify-content:space-between;gap:8px}.step button,.actions button,.risk button{border:1px solid #3c4d38;background:#1b281b;color:var(--g);border-radius:10px;padding:9px 13px;font-size:17px;font-weight:900}.step output{font-weight:900;font-size:20px}.risk{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.risk button{padding:9px 1px;font-size:12px;color:#d5ddd0}.risk button.active{background:var(--g);color:#10170b}.actions{display:flex;gap:10px;margin:12px 0}.actions button{flex:1;color:white;font-size:14px;padding:13px}.gridhead{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}.grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px}.num{aspect-ratio:1;border:1px solid #3b493a;border-radius:11px;background:linear-gradient(145deg,#263126,#121a13);color:white;font-size:clamp(14px,3.5vw,21px);font-weight:900;box-shadow:0 3px 0 #050805}.num.sel{background:linear-gradient(#b0f63d,#78c916);color:#10170b;border-color:#c0ff63;box-shadow:0 0 14px #9aef2266}.num.draw{outline:2px solid #d7b65c;background:#54431e}.num.hit{background:#f2f6d8;color:#10170b;outline:2px solid white}.legend{display:flex;justify-content:center;gap:14px;color:var(--muted);font-size:12px;margin:14px 0}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--g);margin-right:5px}.gold{background:#d7b65c}.white{background:#f2f6d8}.play{width:100%;border:0;border-radius:13px;padding:18px;background:linear-gradient(#a9f63a,#75c516);color:#10170a;font-size:24px;font-weight:950;box-shadow:0 5px 0 #426e0d}.play:disabled{opacity:.5}.status{text-align:center;color:var(--muted);font-size:13px;min-height:20px;margin-top:13px}.result{display:none;background:#0a100b;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:14px}.result.show{display:block}.balls{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.ball{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#253224;border:1px solid #60734c;font-weight:900}.ball.hit{background:var(--g);color:#10170b}table{width:100%;border-collapse:collapse}td{padding:9px 4px;border-bottom:1px solid #2c382c;color:var(--muted)}td:last-child{text-align:right;color:white;font-weight:900}.hist{padding:12px 0;border-bottom:1px solid #2b372b}.hist b{color:var(--g)}.footer{text-align:center;color:#657260;font-size:12px;margin:18px}.panel:first-of-type{display:flex;flex-direction:column}.panel:first-of-type>.eyebrow{order:1}.panel:first-of-type>h1{order:2}.panel:first-of-type>.gridhead{order:3}.panel:first-of-type>.grid{order:4}.panel:first-of-type>.legend{order:5}.panel:first-of-type>#play{order:6}.panel:first-of-type>#status{order:7}.panel:first-of-type>h2{order:8}.panel:first-of-type>.controls{order:9}.panel:first-of-type>.actions{order:10}.panel:first-of-type>#result{order:11}@media(min-width:650px){.panel{padding:22px}.grid{gap:10px}.num{border-radius:14px}.controls{grid-template-columns:1fr 1fr 1fr}}
+</style></head><body><main class="wrap"><header class="top"><div><div class="brand"><b>PX</b> PARADOX</div><div class="sub">K E N O</div></div><div class="balance">Баланс<br><strong id="balance">1000.00</strong> ♫</div></header>
+<section class="panel"><div class="eyebrow">UNDERGROUND GAME</div><h1>KEN<span>O</span></h1><h2>ПАРАМЕТРЫ РАУНДА</h2><div class="controls"><div class="control"><label>Ставка</label><div class="step"><button id="minus">−</button><output id="bet">10.00</output><button id="plus">+</button></div></div><div class="control"><label>Выбрано чисел</label><div class="step"><output><b id="count" style="color:var(--g)">0</b> / 10</output><span id="summary" class="mini">—</span></div></div><div class="control"><label>Уровень риска</label><div class="risk" id="risks"><button data-risk="low">LOW</button><button data-risk="classic">CLASSIC</button><button data-risk="medium" class="active">MED</button><button data-risk="high">HIGH</button></div></div></div>
+<div class="actions"><button id="autoPick">⤨ АВТОВЫБОР</button><button id="clear">× ОЧИСТИТЬ</button></div><div class="gridhead"><h2 style="margin:0">ВЫБЕРИТЕ ЧИСЛА</h2><span class="mini">РОЗЫГРЫШ: <b style="color:var(--g)">10</b></span></div><div class="grid" id="grid"></div><div class="legend"><span><i class="dot"></i>Ваш выбор</span><span><i class="dot gold"></i>Выпавшие</span><span><i class="dot white"></i>Совпадение</span></div><button class="play" id="play">ИГРАТЬ ▶</button><div class="status" id="status">Выберите от 1 до 10 чисел</div><div class="result" id="result"></div></section>
+<section class="panel"><h2>АВТОИГРА</h2><div class="controls"><div class="control"><label>Количество раундов</label><div class="step"><button id="rd">−</button><output id="rounds">5</output><button id="ru">+</button></div></div><div class="control"><label>Управление</label><button id="auto" style="width:100%;padding:12px;border-radius:10px;background:#182719;color:var(--g);border:1px solid var(--line);font-weight:900">▶ ЗАПУСТИТЬ</button></div></div><div class="mini">Автоигра использует выбранные числа, ставку и риск. Её можно остановить.</div></section>
+<section class="panel"><h2>ТАБЛИЦА ВЫПЛАТ</h2><div class="mini">Множитель × ставка. Зависит от уровня риска.</div><table id="table"></table></section>
+<section class="panel"><h2>ИСТОРИЯ РАУНДОВ</h2><div id="history" class="mini">Здесь появятся результаты.</div><div class="actions"><button id="clearHistory">ОЧИСТИТЬ ИСТОРИЮ</button></div></section><div class="footer">PARADOX KENO · DEMO MODE · SHA-256 COMMITMENT</div></main>
+<script>
+const $=x=>document.getElementById(x),mult={low:[0,0,0,.35,.8,1.5,3,8,22,75,300],classic:[0,0,0,.5,1,2,4,12,40,150,1000],medium:[0,0,0,.5,1.5,3,7,15,40,100,500],high:[0,0,0,1,2.5,6,15,40,100,300,1000]};let picks=[],bet=10,risk="medium",rounds=5,balance=1000,busy=false,auto=false,hist=[];const grid=$("grid");
+for(let n=1;n<=40;n++){let b=document.createElement("button");b.className="num";b.textContent=n;b.onclick=()=>{if(busy)return;if(picks.includes(n))picks=picks.filter(x=>x!==n);else if(picks.length<10)picks.push(n);render()};grid.append(b)}
+function render(){[...grid.children].forEach(b=>b.classList.toggle("sel",picks.includes(+b.textContent)));$("count").textContent=picks.length;$("summary").textContent=picks.length?picks.slice().sort((a,b)=>a-b).join(", "):"—";$("bet").textContent=bet.toFixed(2);$("balance").textContent=balance.toFixed(2);$("rounds").textContent=rounds;$("play").disabled=busy||!picks.length||bet>balance;$("table").innerHTML=mult[risk].map((v,i)=>`<tr><td>${i} совп.</td><td>${v}×</td></tr>`).join("")}
+function beep(f=650){try{let c=new AudioContext(),o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.value=.035;o.connect(g);g.connect(c.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.12);o.stop(c.currentTime+.12);o.onended=()=>c.close()}catch{}}
+$("minus").onclick=()=>{bet=Math.max(.1,+(bet-1).toFixed(2));render()};$("plus").onclick=()=>{bet=+(bet+1).toFixed(2);render()};$("autoPick").onclick=()=>{picks=[];while(picks.length<10){let n=1+Math.floor(Math.random()*40);if(!picks.includes(n))picks.push(n)}render();beep(800)};$("clear").onclick=()=>{picks=[];render()};
+$("risks").onclick=e=>{let r=e.target.dataset.risk;if(!r)return;risk=r;[...$("risks").children].forEach(b=>b.classList.toggle("active",b.dataset.risk===r));render()};$("rd").onclick=()=>{rounds=Math.max(1,rounds-1);render()};$("ru").onclick=()=>{rounds=Math.min(100,rounds+1);render()};
+function save(){localStorage.setItem("pxKenoHistory",JSON.stringify(hist));localStorage.setItem("pxKenoBalance",balance)}function renderHist(){$("history").innerHTML=hist.length?hist.map(x=>`<div class="hist"><b>${x.matches} совп. · ${x.payout.toFixed(2)}</b><div>Выпало: ${x.drawn.join(" · ")}</div><div>Ставка ${x.bet} · ${x.risk.toUpperCase()} · ${x.multiplier}×</div><div>${new Date(x.createdAt).toLocaleString("ru-RU")}</div></div>`).join(""):"История пока пуста."}
+async function playRound(){if(busy||!picks.length||bet>balance)return false;busy=true;render();$("status").textContent="Розыгрыш чисел…";try{let resp=await fetch("/api/round",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({picks,bet,risk})}),d=await resp.json();if(!resp.ok)throw Error(d.error);for(let n=0;n<40;n++)grid.children[n].classList.remove("draw","hit");for(let n of d.drawn){await new Promise(r=>setTimeout(r,160));grid.children[n-1].classList.add("draw");beep(500+n*8)}for(let n of d.picks.filter(x=>d.drawn.includes(x)))grid.children[n-1].classList.add("hit");balance=+(balance-bet+d.payout).toFixed(2);$("result").classList.add("show");$("result").innerHTML=`<b>ПОСЛЕДНИЙ РАУНД</b><div class="balls">${d.drawn.map(n=>`<span class="ball ${d.picks.includes(n)?"hit":""}">${n}</span>`).join("")}</div><b>${d.matches} совпадений · ${d.multiplier}× · Выплата ${d.payout.toFixed(2)}</b><div class="mini" style="overflow-wrap:anywhere;margin-top:8px">SHA-256: ${d.seedHash}<br>Server seed: ${d.serverSeed}</div>`;$("status").textContent=`Результат: ${d.matches} совпадений`;hist.unshift(d);hist=hist.slice(0,50);save();renderHist();return true}catch(e){$("status").textContent=e.message;return false}finally{busy=false;render()}}
+$("play").onclick=playRound;$("auto").onclick=async()=>{if(auto){auto=false;$("auto").textContent="▶ ЗАПУСТИТЬ";return}if(!picks.length){$("status").textContent="Сначала выберите числа";return}auto=true;$("auto").textContent="■ ОСТАНОВИТЬ";for(let i=0;i<rounds&&auto;i++){if(bet>balance||!await playRound())break;await new Promise(r=>setTimeout(r,400))}auto=false;$("auto").textContent="▶ ЗАПУСТИТЬ"};
+$("clearHistory").onclick=()=>{hist=[];save();renderHist()};try{hist=JSON.parse(localStorage.getItem("pxKenoHistory")||"[]");balance=Number(localStorage.getItem("pxKenoBalance")||1000)}catch{}render();renderHist();
+</script></body></html>
