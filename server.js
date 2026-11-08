@@ -1,15 +1,5 @@
-{
-  "name": "paradox-keno",
-  "version": "1.1.0",
-  "private": true,
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "dependencies": {
-    "express": "^4.21.2"
-  }
-}
+const express=require("express"),crypto=require("crypto"),path=require("path");
+const app=express(),PORT=process.env.PORT||10000;app.use(express.json({limit:"32kb"}));app.use(express.static(path.join(__dirname,"public")));
+const pay={low:[0,0,0,.35,.8,1.5,3,8,22,75,300],classic:[0,0,0,.5,1,2,4,12,40,150,1000],medium:[0,0,0,.5,1.5,3,7,15,40,100,500],high:[0,0,0,1,2.5,6,15,40,100,300,1000]};
+app.post("/api/round",(q,s)=>{let {picks,bet,risk="medium"}=q.body||{};if(!Array.isArray(picks)||picks.length<1||picks.length>10||picks.some(n=>!Number.isInteger(n)||n<1||n>40)||new Set(picks).size!==picks.length)return s.status(400).json({error:"Выберите от 1 до 10 уникальных чисел."});if(!Number.isFinite(bet)||bet<=0||bet>1e6||!Object.hasOwn(pay,risk))return s.status(400).json({error:"Некорректная ставка или риск."});let seed=crypto.randomBytes(32).toString("hex"),seedHash=crypto.createHash("sha256").update(seed).digest("hex"),a=Array.from({length:40},(_,i)=>i+1);for(let i=39;i>0;i--){let j=crypto.randomInt(i+1);[a[i],a[j]]=[a[j],a[i]]}let drawn=a.slice(0,10).sort((x,y)=>x-y),matches=picks.filter(n=>drawn.includes(n)).length,multiplier=pay[risk][matches];s.json({id:crypto.randomUUID(),picks:picks.slice().sort((x,y)=>x-y),drawn,matches,bet,risk,multiplier,payout:+(bet*multiplier).toFixed(2),seedHash,serverSeed:seed,createdAt:new Date().toISOString()})});
+app.get("/api/health",(_,s)=>s.json({ok:true,name:"PARADOX KENO"}));app.listen(PORT,"0.0.0.0",()=>console.log(`PARADOX KENO listening on 0.0.0.0:${PORT}`));
